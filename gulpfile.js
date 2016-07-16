@@ -47,16 +47,27 @@ gulp.task('build:webpack', ['clean:webpack'], () => {
 
 // Build Minified Styles
 gulp.task('build:styles', ['clean:styles'], () => {
-    return gulp.src(`${config.dev.styles}/main.scss`)
-        .pipe(sourcemaps.init())
-        .pipe(sassGlob())
-        .pipe(sass())
-        .pipe(autoprefixer())
-        .pipe(cleanCss())
-        .pipe(rename(path => path.extname = '.min.css'))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(`${config.dest.styles}`))
-        .pipe(browserSync.stream());
+    if (process.env.NODE_ENV === 'production') {
+        return gulp.src(`${config.dev.styles}/main.scss`)
+            .pipe(sassGlob())
+            .pipe(sass())
+            .pipe(autoprefixer())
+            .pipe(cleanCss())
+            .pipe(rename(path => path.extname = '.min.css'))
+            .pipe(gulp.dest(`${config.dest.styles}`))
+            .pipe(browserSync.stream());
+    } else {
+        return gulp.src(`${config.dev.styles}/main.scss`)
+            .pipe(sourcemaps.init())
+            .pipe(sassGlob())
+            .pipe(sass())
+            .pipe(autoprefixer())
+            .pipe(cleanCss())
+            .pipe(rename(path => path.extname = '.min.css'))
+            .pipe(sourcemaps.write('.'))
+            .pipe(gulp.dest(`${config.dest.styles}`))
+            .pipe(browserSync.stream());
+    }
 });
 
 // Build site directory

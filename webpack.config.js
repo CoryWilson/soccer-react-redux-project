@@ -1,6 +1,7 @@
 /*
  *	Webpack Config File
  */
+const webpack = require('webpack');
 
 module.exports = {
     entry: './dev/scripts/main.js',
@@ -20,5 +21,9 @@ module.exports = {
 	        },
         ],
     },
-
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin({
+            mangle: false,
+        }),
+    ],
 };
