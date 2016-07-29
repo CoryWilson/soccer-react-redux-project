@@ -14,24 +14,27 @@ const sassGlob = require('gulp-sass-glob');
 const sourcemaps = require('gulp-sourcemaps');
 const webpack = require('webpack-stream');
 
-
 /*
- *  Set Up Directory Config Object
+ *  Gulp Setup
  */
 
-const config = {
-    dev: {
-        base: './dev',
-        scripts: './dev/scripts',
-        styles: './dev/styles',
-    },
-    dest: {
-        base: './dist',
-        scripts: './dist/scripts',
-        styles: './dist/styles',
-    },
-    webpack: require('./webpack.config'),
-};
+const paths = require('./paths.config');
+
+
+/*
+ *  Webpack Setup
+ */
+
+const webpackConfigDev = require('./webpack.config');
+const webpackConfigProd = require('./webpack.config.prod');
+
+
+/*
+ *  Environmental Setup Tasks
+ */
+
+gulp.task('set-prod-node-env', () => { process.env.NODE_ENV = 'prod'; });
+gulp.task('set-dev-node-env', () => { process.env.NODE_ENV = 'dev'; });
 
 
 /*
@@ -39,41 +42,51 @@ const config = {
  */
 
 // Build Webpack Bundled Scripts
-gulp.task('build:webpack', ['clean:webpack'], () => {
-    return gulp.src(`${config.dev.scripts}/main.js`)
-        .pipe(webpack(config.webpack))
-        .pipe(gulp.dest(config.dest.scripts));
+gulp.task('build-dev:webpack', ['clean:webpack', 'set-dev-node-env'], () => {
+    gulp.src(paths.dev.scripts)
+        .pipe(webpack(webpackConfigDev))
+        .pipe(gulp.dest(paths.dest.scripts));
 });
 
-// Build Minified Styles
-gulp.task('build:styles', ['clean:styles'], () => {
-    if (process.env.NODE_ENV === 'production') {
-        return gulp.src(`${config.dev.styles}/main.scss`)
-            .pipe(sassGlob())
-            .pipe(sass())
-            .pipe(autoprefixer())
-            .pipe(cleanCss())
-            .pipe(rename(path => path.extname = '.min.css'))
-            .pipe(gulp.dest(`${config.dest.styles}`))
-            .pipe(browserSync.stream());
-    } else {
-        return gulp.src(`${config.dev.styles}/main.scss`)
-            .pipe(sourcemaps.init())
-            .pipe(sassGlob())
-            .pipe(sass())
-            .pipe(autoprefixer())
-            .pipe(cleanCss())
-            .pipe(rename(path => path.extname = '.min.css'))
-            .pipe(sourcemaps.write('.'))
-            .pipe(gulp.dest(`${config.dest.styles}`))
-            .pipe(browserSync.stream());
-    }
+gulp.task('build-prod:webpack', ['clean:webpack', 'set-prod-node-env'], () => {
+    // Will need to update the entry js file
+    gulp.src(paths.dev.scripts)
+        .pipe(webpack(webpackConfigProd))
+        .pipe(gulp.dest(paths.dest.scripts));
+});
+
+// Build Non-Minified Styles
+gulp.task('build-dev:styles', ['clean:styles', 'set-dev-node-env'], () => {
+    gulp.src(`${paths.dev.styles}/main.scss`)
+        .pipe(sourcemaps.init())
+        .pipe(sassGlob())
+        .pipe(sass())
+        .pipe(autoprefixer())
+        .pipe(rename(path => path.extname = '.min.css'))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest(`${paths.dest.styles}`))
+        .pipe(browserSync.stream());
+});
+
+gulp.task('build-prod:styles', ['clean:styles', 'set-prod-node-env'], () => {
+    gulp.src(`${paths.dev.styles}/main.scss`)
+        .pipe(sassGlob())
+        .pipe(sass())
+        .pipe(autoprefixer())
+        .pipe(cleanCss())
+        .pipe(rename(path => path.extname = '.min.css'))
+        .pipe(gulp.dest(`${paths.dest.styles}`));
 });
 
 // Build site directory
-gulp.task('build', [
-    'build:webpack',
-    'build:styles',
+gulp.task('build-dev', [
+    'build-dev:webpack',
+    'build-dev:styles',
+]);
+
+gulp.task('build-prod', [
+    'build-prod:webpack',
+    'build-prod:styles',
 ]);
 
 
@@ -82,12 +95,10 @@ gulp.task('build', [
  */
 
 // Clean Webpack
-gulp.task('clean:webpack', () => del([`${config.dest.scripts}/*.js`]));
-
+gulp.task('clean:webpack', () => del([`${paths.dest.scripts}/*`]));
 
 // Clean Styles
-gulp.task('clean:styles', () => del([`${config.dest.styles}/*.css`]));
-
+gulp.task('clean:styles', () => del([`${paths.dest.styles}/*`]));
 
 // Clean site directory
 gulp.task('clean', [
@@ -102,12 +113,12 @@ gulp.task('clean', [
 
 // Watch Scripts
 gulp.task('watch:scripts', [
-    'build:webpack',
+    'build-dev:webpack',
 ], browserSync.reload);
 
 // Watch Styles
 gulp.task('watch:styles', [
-    'build:styles',
+    'build-dev:styles',
 ], browserSync.reload);
 
 // Watch Task
@@ -121,7 +132,7 @@ gulp.task('watch', [
  *  Browser-Sync Task
  */
 
-gulp.task('browser-sync', ['build'], () => {
+gulp.task('browser-sync', ['build-dev'], () => {
     // Initialize Browser-Sync Proxy Server
     browserSync.init({
         server: {
@@ -132,10 +143,10 @@ gulp.task('browser-sync', ['build'], () => {
     });
 
     // Call watch of CSS Files
-    gulp.watch(`${config.dev.styles}/**/*.scss`, ['build:styles']);
+    gulp.watch(`${paths.dev.styles}/**/*.scss`, ['build-dev:styles']);
 
     // Call watch of JS Files
-    gulp.watch(`${config.dev.scripts}/**/*.js`, ['watch:scripts']);
+    gulp.watch(`${paths.dev.scripts}/**/*.js`, ['watch:scripts']);
 
     // Call watch of HTML files
     gulp.watch('./*.html').on('change', browserSync.reload);
