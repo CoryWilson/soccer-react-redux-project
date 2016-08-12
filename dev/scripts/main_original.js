@@ -1,9 +1,8 @@
 // Import npm dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { render } from 'react-dom';
 
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import Header from './components/header.js';
 import TestComponent from './components/test-component.js';
@@ -20,18 +19,21 @@ const root = document.getElementById('root');
 
 // Base component
 class App extends React.Component {
-	render() {
-		return(
-			<div>
+    render() {
+        return(
+            <div>
                 <Header />
-			</div>
-		);
-	}
+                <NowPlaying />
+                <ViewerHistory />
+                <ViewerStandings />
+                <LeagueHistory />
+                <LeagueStandings />
+                <ClubHistory />
+                <ClubStandings />
+            </div>
+        );
+    }
 };
 
-render((
-  <Router history={browserHistory}>
-    <Route path="/" component={App}/>
-    <Route path="/a" component={NowPlaying}/>
-  </Router>
-), document.getElementById('root'))
+// Render to the DOM
+ReactDOM.render(<App />, root);

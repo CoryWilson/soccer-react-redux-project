@@ -8,7 +8,7 @@ class TestComponent extends React.Component {
     render() {
         return (
 			<div className="test-component">
-				<h1 className="heading">This is the test component!</h1>
+				<h1 className="heading">This is the test component maybe!</h1>
 			</div>
         )
     };
