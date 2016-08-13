@@ -10,6 +10,12 @@ class StatusIndicator extends React.Component {
   }
   handleClick() {
     this.setState({watching: !this.state.watching});
+    
+    if (this.state.watching == false) {
+      // is watching
+    } else {
+      // is not watching
+    }
   }
   render() {
     const text = this.state.watching ? 'fa fa-circle watching' : 'fa fa-circle not-watching';
