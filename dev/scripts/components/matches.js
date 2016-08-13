@@ -1,5 +1,5 @@
-import React from 'react'
-import LikeButton from 'components/status_indicator.js'
+import React from 'react';
+import LikeButton from './status_indicator';
 
 class Matches extends React.Component {
     constructor() {
@@ -19,6 +19,7 @@ class Matches extends React.Component {
             <div>
                 <div className="section">
                     <h2>{today} Premier League Matches</h2>
+                    <LikeButton />
                     <table className="standings">
                         <thead>
                             <tr>
