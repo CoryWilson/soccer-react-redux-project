@@ -16,3 +16,17 @@
  		margin-bottom: 1em;
  	}
  }
+
+ ul.list-center {
+ 	display: block;
+ 	width: 60%;
+ 	margin: 0 auto;
+
+ 	li {
+ 		margin-bottom: 4px;
+ 	}
+
+ 	a {
+ 		color: $black;
+ 	}
+}

@@ -1,0 +1,178 @@
+/*
+========================
+Components-Form
+========================
+*/
+
+input, textarea {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+
+.form-group {
+	margin-bottom: .3em;
+	overflow: hidden;
+}
+
+h1 + form {
+	margin-top: 1em;
+}
+
+form {
+	background: darken(whitesmoke, 0.2);
+	padding: 1em;
+	width: 60%;
+	border-radius: 5px;
+	display: block;
+	margin: 0 auto;
+
+	input, textarea {
+		display: block;
+		border: 1px solid #d8d8d8;
+		font-size: .8em;
+		padding: 7px 10px;
+		transition: all 0.1s ease-out;
+		width: 100%;
+		font-family: inherit;
+		margin-bottom: .5em;
+		border-radius: 3px;
+		color: rgba(#000, 0.54);
+		background: rgba(#fff, 0.8);
+	}
+
+	input:focus, textarea:focus {
+		outline: none;
+		transition: all 0.1s ease-in;
+		border: 1px solid green;
+	}
+
+	select {
+		font: 20px/$base-font-family !important;
+		font-size: .8em !important;
+		border: 1px solid #d8d8d8;
+		width: 100%;
+		color: rgba(#000, 0.54);
+		cursor: pointer;
+		padding: 5px 0;
+		position: relative;
+		height: 40px;
+		background: rgba(#fff, 0.8);
+		margin-bottom: .5em;
+
+		option {
+			font-family: $base-font-family;
+		}
+	}
+
+	label {
+		display: block;
+		font-size: .8em;
+		margin-bottom: 8px;
+	}
+
+	textarea {
+		min-height: 200px;
+	}
+
+	.six-col {
+		width: 49.5%;
+		margin: 0 .1em;
+	}
+
+	.six-col:first-of-type {
+		margin-left: 0;
+	}
+
+	.six-col:last-of-type {
+		margin-right: 0;
+	}
+}
+
+
+form input[type=submit] {
+	display: block;
+	background: green;
+	color: white;
+	padding: 0 2em;
+	text-transform: uppercase;
+	overflow: hidden;
+	margin-top: .8em;
+	cursor: pointer;
+	border-radius: 2px;
+	height: 36px;
+	line-height: 36px;
+	transition: all 0.2s ease-out;
+	border: 0 !important;
+	vertical-align: middle;
+	display: inline-block;
+	letter-spacing: .5px;
+	width: 100%;
+	font-size: .8em;
+	font-weight: 400 !important;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+
+	&:hover {
+		background: darken(green, 5%);
+		transition: all 0.2s ease-in;
+	}
+}
+
+
+.form-group-two {
+	align-items: flex-start;
+	display: flex;
+
+	div {
+		width: 98%;
+	}
+
+	div:first-of-type {
+		margin-right: 1em;
+	}
+}
+
+
+
+
+/*
+========================
+Validation
+========================
+*/
+
+input.error {
+	border-color: red;
+}
+
+label.error {
+	color: red;
+	font-weight: bold;
+	font-size: .6em;
+}
+
+
+
+
+.checkbox-group {
+	display: flex;
+	align-items: center;
+	margin: 1em 0;
+
+	input {
+	-webkit-appearance: checkbox !important;
+     -moz-appearance: checkbox !important;
+     -ms-appearance: checkbox !important;
+     -o-appearance: checkbox !important;
+     appearance: checkbox !important;
+     float: left;
+     width: auto;
+     vertical-align: middle;
+     margin-bottom: 0;
+	}
+
+	label {
+		width: 80%;
+		margin-left: 1.5em;
+		margin-bottom: 0;
+	}
+}

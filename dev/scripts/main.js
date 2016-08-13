@@ -3,35 +3,56 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { render } from 'react-dom';
 
-import { Router, Route, browserHistory } from 'react-router';
-
-import Header from './components/header.js';
-import TestComponent from './components/test-component.js';
-import ViewerStandings from './components/viewer_standings.js';
-import NowPlaying from './components/now_playing.js';
-import ViewerHistory from './components/viewer_history.js';
-import LeagueHistory from './components/league_history.js';
-import LeagueStandings from './components/league_standings.js';
-import ClubHistory from './components/club_history.js';
-import ClubStandings from './components/club_standings.js';
+import { Router, Route, browserHistory, Link, IndexRoute, IndexLink } from 'react-router';
+import Home from './components/home.js'
+import Viewers from './components/viewers.js'
+import Viewer from './components/viewer.js'
+import Leagues from './components/leagues.js'
+import League from './components/league.js'
+import Clubs from './components/clubs.js'
+import Club from './components/club.js'
+import Account from './components/account.js'
 
 // Element to anchor to 
 const root = document.getElementById('root');
 
-// Base component
 class App extends React.Component {
-	render() {
-		return(
-			<div>
-                <Header />
-			</div>
-		);
-	}
+    render() {
+        return(
+            <div>
+                <header className="site-header">
+                    <h1><IndexLink to="/">Hardcore Football</IndexLink></h1>
+                    <ul role="nav">
+                        <li><Link to="/leagues" activeClassName="active">Leagues</Link></li>
+                        <li><Link to="/clubs" activeClassName="active">Clubs</Link></li>
+                        <li><Link to="/viewers" activeClassName="active">Viewers</Link></li>
+                        <li><Link to="/account" activeClassName="active">Account</Link></li>
+                    </ul>
+                </header>
+
+                {this.props.children}
+            </div>
+        );
+    }
 };
+
+// Base component
 
 render((
   <Router history={browserHistory}>
-    <Route path="/" component={App}/>
-    <Route path="/a" component={NowPlaying}/>
+    <Route path="/" component={App}>
+      <IndexRoute component={Home}/>
+
+      <Route path="/leagues" component={Leagues}/>
+      <Route path="/leagues/:league" component={League}/>
+
+      <Route path="/clubs" component={Clubs}/>
+      <Route path="/clubs/:club" component={Club}/>
+
+      <Route path="/viewers" component={Viewers}/>
+      <Route path="/viewers/:viewer" component={Viewer}/>
+
+      <Route path="/account" component={Account}/>
+    </Route>
   </Router>
 ), document.getElementById('root'))

@@ -6,5 +6,27 @@ Components-Header
 
 header.site-header {
 	text-align: center;
-	margin-bottom: 2em;
+	margin-bottom: 5em;
+
+	ul {
+		margin-top: 1em;
+
+		li {
+			display: inline-block;
+			padding: 5px 10px;
+		}
+	}
+
+	h1 > a {
+		color: $black;
+		text-decoration: none;
+	}
+
+	a {
+		color: lighten(red, 15%);
+	}
+}
+
+a.active {
+	color: green !important;
 }
