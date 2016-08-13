@@ -7,8 +7,8 @@ Components-Table
 
 
 // Standings Table
-table.standings {
-	width: 100%;
+table.standings,
+table.table-list {
 
 	thead {
 		border-bottom: 2px solid rgba(#000, 0.02)
@@ -26,4 +26,17 @@ table.standings {
 	tr:nth-of-type(even) {
 		background: rgba(#ccc, 0.3);
 	}
+
+	a {
+		color: $black;
+	}
+}
+
+table.standings {
+	width: 100%;
+}
+
+table.table-list {
+	margin: 0 auto;
+	width: 60%;
 }

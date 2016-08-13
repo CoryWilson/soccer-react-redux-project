@@ -10,10 +10,24 @@ class Clubs extends React.Component {
         return (
             <div className="section">
                 <h2 className="heading">Clubs</h2>
-                <ul className="list-center" role="nav">
-                    <li><Link to="/clubs/chelsea">Chelsea</Link></li>
-                    <li><Link to="/clubs/manchester-united">Manchester United</Link></li>
-                </ul>
+                <table className="table-list">
+                    <thead>
+                        <tr>
+                            <th>Club</th>
+                            <th>Views</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><Link to="/clubs/chelsea">Chelsea</Link></td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td><Link to="/clubs/manchester-united">Manchester United</Link></td>
+                            <td>5</td>
+                        </tr>
+                    </tbody>
+                </table>
                 {this.props.children}
             </div>
         )
