@@ -7,32 +7,46 @@ export default React.createClass({
         return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     }
 
-    let clubName = this.props.params.club.replace(/-/g, ' ')
-    clubName = capitalize_Words(clubName)
+    let leagueName = this.props.params.league.replace(/-/g, ' ')
+    leagueName = capitalize_Words(leagueName)
 
     return (
         <div>
             <div className="section">
-                <h2>{clubName} Viewer Totals</h2>
+                <h2>{leagueName} Standings</h2>
                 <table className="standings">
                     <thead>
                         <tr>
                             <th>Viewer</th>
-                            <th>Count</th>
-                            <th>Most Recent</th>
+                            <th>Games Watched</th>
+                            <th>Watched Recently</th>
+                            <th>Most Watched</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>Mystik Beaver</td>
-                            <td>100</td>
+                            <td>2</td>
                             <td>08/13/2016: Chelsea vs. West Ham</td>
+                            <td>Chelsea</td>
+                        </tr>
+                        <tr>
+                            <td>Kwanza Werewolf</td>
+                            <td>1</td>
+                            <td>08/13/2016: Manchester United vs. Sunderland</td>
+                            <td>Manchester United</td>
+                        </tr>
+                        <tr>
+                            <td>Reefa5</td>
+                            <td>0</td>
+                            <td>no games watched recently =()</td>
+                            <td>n/a</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div className="section">
-                <h2 className="heading">{clubName} History</h2>
+                <h2 className="heading">{leagueName} History</h2>
                 <table className="standings">
                     <thead>
                         <tr>
@@ -58,4 +72,3 @@ export default React.createClass({
     )
   }
 })
-

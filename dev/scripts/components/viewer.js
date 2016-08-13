@@ -7,32 +7,37 @@ export default React.createClass({
         return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     }
 
-    let clubName = this.props.params.club.replace(/-/g, ' ')
-    clubName = capitalize_Words(clubName)
+    let viewerName = this.props.params.viewer.replace(/-/g, ' ')
+    viewerName = capitalize_Words(viewerName)
 
     return (
         <div>
             <div className="section">
-                <h2>{clubName} Viewer Totals</h2>
+                <h2>{viewerName}'s Most Watched</h2>
                 <table className="standings">
                     <thead>
                         <tr>
-                            <th>Viewer</th>
+                            <th>Club</th>
                             <th>Count</th>
                             <th>Most Recent</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Mystik Beaver</td>
+                            <td>Chelsea</td>
                             <td>100</td>
                             <td>08/13/2016: Chelsea vs. West Ham</td>
+                        </tr>
+                        <tr>
+                            <td>Juventus</td>
+                            <td>21</td>
+                            <td>08/10/2016: Juventus vs. Napoli</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div className="section">
-                <h2 className="heading">{clubName} History</h2>
+                <h2 className="heading">{viewerName}'s History</h2>
                 <table className="standings">
                     <thead>
                         <tr>
@@ -40,7 +45,6 @@ export default React.createClass({
                             <th>Home Team</th>
                             <th>Away Team</th>
                             <th>League</th>
-                            <th>Viewers</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,7 +53,6 @@ export default React.createClass({
                             <td>Chelsea</td>
                             <td>West Ham</td>
                             <td>Premier League</td>
-                            <td>1</td>
                         </tr>
                     </tbody>
                 </table>
