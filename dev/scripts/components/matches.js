@@ -1,12 +1,9 @@
 import React from 'react';
-import LikeButton from './status_indicator';
+import StatusIndicator from './status_indicator';
 
 class Matches extends React.Component {
     constructor() {
         super();
-    }
-    lol() {
-        console.log('ay');
     }
     render() {
         let today = new Date()
@@ -19,7 +16,6 @@ class Matches extends React.Component {
             <div>
                 <div className="section">
                     <h2>{today} Premier League Matches</h2>
-                    <LikeButton />
                     <table className="standings">
                         <thead>
                             <tr>
@@ -35,7 +31,15 @@ class Matches extends React.Component {
                                 <td>West Ham</td>
                                 <td>0</td>
                                 <td>
-                                    <i onClick={this.lol} className="fa fa-circle not-watching"></i>
+                                    <StatusIndicator />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Everton</td>
+                                <td>Tottenham</td>
+                                <td>0</td>
+                                <td>
+                                    <StatusIndicator />
                                 </td>
                             </tr>
                         </tbody>

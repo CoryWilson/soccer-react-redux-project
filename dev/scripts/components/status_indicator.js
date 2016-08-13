@@ -1,24 +1,24 @@
 import React from 'react'
 
-class LikeButton extends React.Component {
+class StatusIndicator extends React.Component {
   constructor() {
     super();
     this.state = {
-      liked: false
+      watching: false
     };
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
-    this.setState({liked: !this.state.liked});
+    this.setState({watching: !this.state.watching});
   }
   render() {
-    const text = this.state.liked ? 'liked' : 'haven\'t liked';
+    const text = this.state.watching ? 'fa fa-circle watching' : 'fa fa-circle not-watching';
     return (
       <div onClick={this.handleClick}>
-        You {text} this. Click to toggle.
+        <i className={text}></i>
       </div>
     );
   }
 }
 
-export default LikeButton;
+export default StatusIndicator;

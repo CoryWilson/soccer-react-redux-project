@@ -2,10 +2,15 @@
  *	Buttons Component
  */
 
+ .watching,
  .not-watching {
- 	color: red;
+ 	cursor: pointer;
+ }
+
+ .not-watching {
+ 	color: $red;
  }
 
  .watching {
- 	color: green;
+ 	color: $green;
  }
