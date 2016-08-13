@@ -10,7 +10,7 @@ class Viewers extends React.Component {
         return (
             <div className="section">
                 <h2 className="heading">Viewers</h2>
-                <ul role="nav">
+                <ul className="list-center" role="nav">
                     <li><Link to="/viewers/mystik-beaver">Mystik Beaver</Link></li>
                     <li><Link to="/viewers/kwanza-werewolf">Kwanza Werewolf</Link></li>
                 </ul>

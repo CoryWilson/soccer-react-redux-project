@@ -10,7 +10,7 @@ class Leagues extends React.Component {
         return (
             <div className="section">
                 <h2 className="heading">Leagues</h2>
-                <ul role="nav">
+                <ul className="list-center" role="nav">
                     <li><Link to="/leagues/premier-league">Premier League</Link></li>
                     <li><Link to="/leagues/serie-a">Serie A</Link></li>
                 </ul>

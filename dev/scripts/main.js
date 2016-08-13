@@ -4,14 +4,14 @@ import ReactDOM from 'react-dom';
 import { render } from 'react-dom';
 
 import { Router, Route, browserHistory, Link, IndexRoute, IndexLink } from 'react-router';
-import NowPlaying from './components/now_playing.js';
-import Viewers from './components/viewers.js';
-import Viewer from './components/viewer.js';
-import Leagues from './components/leagues.js';
-import League from './components/league.js';
-import Clubs from './components/clubs.js';
-import Club from './components/club.js';
-import Home from './components/home.js';
+import Home from './components/home.js'
+import Viewers from './components/viewers.js'
+import Viewer from './components/viewer.js'
+import Leagues from './components/leagues.js'
+import League from './components/league.js'
+import Clubs from './components/clubs.js'
+import Club from './components/club.js'
+import Account from './components/account.js'
 
 // Element to anchor to 
 const root = document.getElementById('root');
@@ -26,6 +26,7 @@ class App extends React.Component {
                         <li><Link to="/leagues" activeClassName="active">Leagues</Link></li>
                         <li><Link to="/clubs" activeClassName="active">Clubs</Link></li>
                         <li><Link to="/viewers" activeClassName="active">Viewers</Link></li>
+                        <li><Link to="/account" activeClassName="active">Account</Link></li>
                     </ul>
                 </header>
 
@@ -50,6 +51,8 @@ render((
 
       <Route path="/viewers" component={Viewers}/>
       <Route path="/viewers/:viewer" component={Viewer}/>
+
+      <Route path="/account" component={Account}/>
     </Route>
   </Router>
 ), document.getElementById('root'))
