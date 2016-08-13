@@ -12,6 +12,7 @@ import League from './components/league.js'
 import Clubs from './components/clubs.js'
 import Club from './components/club.js'
 import Account from './components/account.js'
+import Matches from './components/matches.js'
 
 // Element to anchor to 
 const root = document.getElementById('root');
@@ -23,6 +24,7 @@ class App extends React.Component {
                 <header className="site-header">
                     <h1><IndexLink to="/">Hardcore Football</IndexLink></h1>
                     <ul role="nav">
+                        <li><Link to="/matches" activeClassName="active">Matches</Link></li>
                         <li><Link to="/leagues" activeClassName="active">Leagues</Link></li>
                         <li><Link to="/clubs" activeClassName="active">Clubs</Link></li>
                         <li><Link to="/viewers" activeClassName="active">Viewers</Link></li>
@@ -42,6 +44,8 @@ render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Home}/>
+
+      <Route path="/matches" component={Matches}/>
 
       <Route path="/leagues" component={Leagues}/>
       <Route path="/leagues/:league" component={League}/>
