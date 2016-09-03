@@ -1,4 +1,6 @@
-// Import npm dependencies
+// Import Dependencies
+import stylesheet from './../styles/main.scss';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { render } from 'react-dom';

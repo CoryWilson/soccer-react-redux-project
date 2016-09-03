@@ -34,25 +34,29 @@
  *	Import Layout Files
  */
 
-@import './layout/*';
+@import './layout/header';
+@import './layout/footer';
 
 
 /*
  *	Import Component Files
  */
 
-@import './components/*';
+@import './components/buttons';
+@import './components/header';
+@import './components/table';
+@import './components/form';
 
 
 /*
  *	Import Page Files
  */
 
-@import './pages/*';
+@import './pages/home';
 
 
 /*
  *	Import Theme Files
  */
 
-// @import './themes/*';
+@import './themes/theme';
